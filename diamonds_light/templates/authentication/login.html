@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title%} Login {% endblock %}
+{% block content %}
+<!--{% load crispy_forms_tags %}-->
+
+<!--Login-->
+<div class="login_div">
+    <div class="login_content">
+        <div class="login_form">
+            <p></p>
+            <form method="POST">
+                {% csrf_token %}
+                <table class="login_table">
+                    {{ login_form.as_table }}
+                </table>
+                <div style="text-align: center">
+                    <input class="btn btn-primary" type="submit" value="Войти">
+                    <p></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

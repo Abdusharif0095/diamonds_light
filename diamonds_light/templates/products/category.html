@@ -1,0 +1,20 @@
+{% extends "authentication/index.html" %}
+{% load products_tags %}
+{% block products %}
+    {% for product in products %}
+        <div class="product">
+            {% if product.discount > 0 %}
+                <div class="image-container">
+                    <img src="{{product.image.url}}" alt="{{product.name}}">
+                    <div class="image-text">-{{ product.discount }}%</div>
+                </div>
+            {% else %}
+                <img src="{{product.image.url}}" alt="{{product.name}}">
+            {% endif %}
+            <h3>{{product.name|slice:"20"}}</h3>
+            <p>{{product.description|slice:"20"}}...</p>
+            <span>Цена: {{ product.price|get_price:product.discount }}</span>
+            <a href="{% url 'get_product' product.pk product.slug %}" class="view-link">Подробнее</a>
+        </div>
+    {% endfor %}
+{% endblock %}

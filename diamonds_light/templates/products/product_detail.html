@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load products_tags %}
+
+{% block content %}
+    <div class="product-detail">
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-info">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+            <p>Цена: <span style="color: #3b4151; font-weight: bold">{{ product.price }}</span></p>
+            <p>Категория: {{ product.category.name }}</p>
+            <p>В наличии: {% if product.stock > 0 %}<span style="color:green; font-weight:bold">Да</span>{% else %}<span style="color:red; font-weight:bold">Нет</span>{% endif %}</p>
+            {% if product.discount %}
+                <p>Скидка: {{ product.discount }}%</p>
+            {% endif %}
+            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <div>
+                    <input type="submit" value="В корзину">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

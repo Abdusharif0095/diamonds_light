@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load products_tags %}
+{% block content %}
+<div class="container">
+    <div class="categories">
+        <p class="cl-62"> Категории </p>
+        {% get_categories as categories %}
+        {% for item in categories %}
+            <a href="{% url 'get_category' item.pk item.slug %}" class="category-card">
+                <img src="{{ item.image.url }}" alt="{{item.name}}">
+                <span class="cl-ff">{{ item.name }}</span>
+            </a>
+        {% endfor %}
+    </div>
+    <div class="content">
+        <p style="font-size: 20px; text-align: center" class="cl-62"> Товары </p>
+        <div class="products">
+            {% block products %}
+            {% get_products as products %}
+            {% for product in products %}
+                <div class="product">
+                    {% if product.discount > 0 %}
+                        <div class="image-container">
+                            <img src="{{product.image.url}}" alt="{{product.name}}">
+                            <div class="image-text">-{{ product.discount }}%</div>
+                        </div>
+                    {% else %}
+                        <img src="{{product.image.url}}" alt="{{product.name}}">
+                    {% endif %}
+                    <h3>{{product.name|slice:"20"}}</h3>
+                    <p>{{product.description|slice:"20"}}...</p>
+                    <span>Цена: {{ product.price|get_price:product.discount }}</span>
+                    <a href="{% url 'get_product' product.pk product.slug %}" class="view-link">Подробнее</a>
+                </div>
+            {% endfor %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

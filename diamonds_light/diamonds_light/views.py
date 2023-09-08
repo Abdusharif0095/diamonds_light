@@ -7,4 +7,5 @@ from django.http import HttpResponse
 
 class HomeView(APIView):
     def get(self, request):
-        return HttpResponse("<h1>Welcome to Diamond's Light</h1>")
+        # return HttpResponse("<h1>Welcome to Diamond's Light</h1>")
+        return render(request, 'authentication/index.html')
