@@ -38,23 +38,21 @@
         </ul>
     </div>
 </nav>
-<div style="min-height: 80%">
-    <div class="cart">
-        {% with total_items=cart|length %}
-        {% if cart|length > 0 %}
-        В корзине:
-        <a href="{% url 'cart:cart_detail' %}">
-            {{ total_items }} шт, {{ cart.get_total_price }}сом.
-        </a>
-        {% else %}
-        Корзина пустая
-        {% endif %}
-        {% endwith %}
-    </div>
-    <div class="container">
-        {% block content %}
-        {% endblock %}
-    </div>
+<div class="cart">
+    {% with total_items=cart|length %}
+    {% if cart|length > 0 %}
+    В корзине:
+    <a href="{% url 'cart:cart_detail' %}">
+        {{ total_items }} шт, {{ cart.get_total_price }}сом.
+    </a>
+    {% else %}
+    Корзина пустая
+    {% endif %}
+    {% endwith %}
+</div>
+<div class="container">
+    {% block content %}
+    {% endblock %}
 </div>
 <footer>
     <div class="footer">

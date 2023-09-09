@@ -32,6 +32,7 @@ body {
 }
 
 .container {
+    min-height: 80%;
     max-width: 1180px;
     margin: 0 auto;
 }
@@ -372,7 +373,6 @@ td input[type="submit"] {
 
 /* cart */
 .cart {
-    height: auto;
     width: 100%;
     text-align: right;
     padding-top: 4px;
