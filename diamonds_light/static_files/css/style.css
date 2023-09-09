@@ -52,7 +52,7 @@ body {
 .login_content {
     align-items: center;
     justify-content: center;
-    width: 350px;
+    width: 100%;
     color: #FFFFFF;
     background: #445162;
     border-radius: 10px;
@@ -60,7 +60,7 @@ body {
 
 .login_form {
     margin: 0 auto;
-    width: 70%;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
